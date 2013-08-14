@@ -143,7 +143,7 @@
 <text x="5.08" y="14.732" size="1.016" layer="22" font="vector" ratio="15" rot="MR0">RXI</text>
 <text x="5.842" y="12.192" size="1.016" layer="22" font="vector" ratio="15" rot="MR0">3.3V</text>
 <text x="5.334" y="9.652" size="1.016" layer="22" font="vector" ratio="15" rot="MR0">CTS</text>
-<text x="40.64" y="19.05" size="1.27" layer="16" font="vector" ratio="19" rot="MR270">5/31/11</text>
+<text x="33.02" y="1.27" size="1.27" layer="16" font="vector" ratio="19" rot="MR180">v23</text>
 <wire x1="33.02" y1="2.54" x2="33.02" y2="1.27" width="0.2032" layer="21" curve="-180"/>
 <wire x1="33.02" y1="1.27" x2="33.274" y2="1.143" width="0.2032" layer="21"/>
 <wire x1="33.02" y1="1.27" x2="33.147" y2="1.524" width="0.2032" layer="21"/>
@@ -170,7 +170,6 @@
 <rectangle x1="11.43" y1="3.81" x2="11.684" y2="4.064" layer="41"/>
 <rectangle x1="24.384" y1="6.985" x2="24.638" y2="7.239" layer="41"/>
 <rectangle x1="24.384" y1="2.921" x2="24.638" y2="3.175" layer="41"/>
-<text x="21.59" y="-11.43" size="1.778" layer="27" font="fixed" ratio="10">Kade Jensen</text>
 </plain>
 <libraries>
 <library name="SparkFun">
@@ -1067,11 +1066,6 @@ This is the mechanical footprint for a #4 phillips button head screw. Use the ke
 <smd name="7" x="0.25" y="-1.37" dx="0.65" dy="0.28" layer="1" rot="R90"/>
 <text x="-1.27" y="1.905" size="0.6096" layer="25">&gt;NAME</text>
 <text x="-1.905" y="-2.54" size="0.6096" layer="27">&gt;VALUE</text>
-</package>
-<package name="CREATIVE_COMMONS">
-<text x="-20.32" y="5.08" size="1.778" layer="27">Released under the Creative Commons Attribution Share-Alike 3.0 License</text>
-<text x="0" y="2.54" size="1.778" layer="27">http://creativecommons.org/licenses/by-sa/3.0</text>
-<text x="11.43" y="0" size="1.778" layer="27">Designed by:</text>
 </package>
 <package name="OSHW-LOGO-L">
 <polygon width="0.15" layer="21">
@@ -2148,10 +2142,9 @@ design rules under a new name.</description>
 <element name="C3" library="SparkFun" package="0603-CAP" value="10nF" x="19.05" y="1.27" rot="R180"/>
 <element name="U2" library="Testing" package="LGA14" value="ADXL3451:1" x="22.86" y="12.7" rot="R270"/>
 <element name="U$1" library="SparkFun" package="16LPCC" value="HMC5883LSMD" x="10.16" y="5.08"/>
-<element name="U$3" library="SparkFun" package="CREATIVE_COMMONS" value="CREATIVE_COMMONS" x="-8.89" y="-11.43"/>
 <element name="U$4" library="SparkFun" package="OSHW-LOGO-L" value="OSHW-LOGOL" x="20.32" y="4.445" rot="MR0"/>
-<element name="JP11" library="abes" package="FIDUCIAL-1X2.5" value="FIDUCIAL1X2.5" x="34.29" y="26.67"/>
-<element name="JP12" library="abes" package="FIDUCIAL-1X2.5" value="FIDUCIAL1X2.5" x="5.08" y="6.35"/>
+<element name="JP11" library="abes" package="FIDUCIAL-1X2.5" value="FIDUCIAL1X2.5" x="34.29" y="25.4"/>
+<element name="JP12" library="abes" package="FIDUCIAL-1X2.5" value="FIDUCIAL1X2.5" x="5.08" y="1.27"/>
 </elements>
 <signals>
 <signal name="3.3V">
@@ -2347,9 +2340,6 @@ design rules under a new name.</description>
 <wire x1="12.319" y1="10.9664" x2="12.319" y2="10.033" width="0.254" layer="1"/>
 <wire x1="12.319" y1="10.033" x2="12.573" y2="9.779" width="0.254" layer="1"/>
 <wire x1="12.573" y1="9.779" x2="16.129" y2="9.779" width="0.254" layer="1"/>
-<wire x1="8.001" y1="5.842" x2="7.62" y2="6.223" width="0.254" layer="1"/>
-<wire x1="8.778" y1="5.842" x2="8.001" y2="5.842" width="0.254" layer="1"/>
-<wire x1="8.79" y1="5.83" x2="8.778" y2="5.842" width="0.254" layer="1"/>
 <wire x1="9.906" y1="12.446" x2="7.62" y2="10.16" width="0.254" layer="1"/>
 <wire x1="7.62" y1="10.16" x2="7.62" y2="6.223" width="0.254" layer="1"/>
 <wire x1="22.86" y1="10.6" x2="22.86" y2="8.89" width="0.254" layer="1"/>
@@ -2366,6 +2356,8 @@ design rules under a new name.</description>
 <wire x1="17.907" y1="11.557" x2="20.193" y2="11.557" width="0.254" layer="16"/>
 <wire x1="17.145" y1="10.795" x2="18.2" y2="9.74" width="0.254" layer="1"/>
 <wire x1="18.2" y1="9.74" x2="18.2" y2="8.89" width="0.254" layer="1"/>
+<wire x1="8.79" y1="5.83" x2="8.013" y2="5.83" width="0.254" layer="1"/>
+<wire x1="8.013" y1="5.83" x2="7.62" y2="6.223" width="0.254" layer="1"/>
 </signal>
 <signal name="SDA">
 <contactref element="U6" pad="27"/>
