@@ -1,4 +1,4 @@
-9_Degrees_of_Freedom_-_Razor_IMU
+9 Degrees of Freedom-Razor IMU
 ======================================
 
 [![9DOF Razor IMU](https://dlnmh9ip6v2uc.cloudfront.net/images/products/1/0/7/3/6/10736-01_i_ma.jpg)  
