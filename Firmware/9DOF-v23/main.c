@@ -1,8 +1,10 @@
 /*
-    10-5-11
-    Copyright Spark Fun Electronics© 2011
-    Aaron Weiss
-    aaron at sparkfun dot com
+    1-20-2014
+    SparkFun Electronics© 
+    Originally by Aaron Weiss, Revised by Kade Jensen
+	kade at sparkfun dot com
+	
+	Standard beerware liscense applies
     
 	9DOF-Razor-IMU-AHRS compatible
 	
