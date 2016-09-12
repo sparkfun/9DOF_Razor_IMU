@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.0025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -179,7 +179,7 @@
 <text x="5.461" y="22.225" size="0.889" layer="22" font="vector" ratio="15" rot="MR0" align="center-left">3.3V</text>
 <text x="5.08" y="19.685" size="0.889" layer="22" font="vector" ratio="15" rot="MR0" align="center-left">SDA</text>
 <text x="5.08" y="17.145" size="0.889" layer="22" font="vector" ratio="15" rot="MR0" align="center-left">SCL</text>
-<text x="5.08" y="31.496" size="0.889" layer="16" font="vector" ratio="15" rot="MR180" align="bottom-center">v24</text>
+<text x="5.08" y="31.496" size="0.889" layer="16" font="vector" ratio="15" rot="MR180" align="bottom-center">v30</text>
 <text x="0.254" y="13.97" size="0.889" layer="22" font="vector" ratio="15" rot="MR90" align="bottom-center">ON</text>
 <text x="0.254" y="7.62" size="0.889" layer="22" font="vector" ratio="15" rot="MR90" align="bottom-center">OFF</text>
 <wire x1="0.762" y1="9.017" x2="0.762" y2="12.7" width="0.508" layer="22"/>
