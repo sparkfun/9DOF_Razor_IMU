@@ -24061,7 +24061,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="SUPPLY19" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
 <part name="TP1" library="SparkFun-Connectors" deviceset="TEST-POINT" device="3" value="TEST-POINT3"/>
 <part name="TP2" library="SparkFun-Connectors" deviceset="TEST-POINT" device="3" value="TEST-POINT3"/>
-<part name="LOGO4" library="SparkFun-Aesthetics" deviceset="SFE_LOGO_FLAME" device=".1_INCH"/>
 </parts>
 <sheets>
 <sheet>
@@ -24224,7 +24223,6 @@ LED indicator.</text>
 <instance part="SUPPLY19" gate="G$1" x="198.12" y="66.04"/>
 <instance part="TP1" gate="G$1" x="17.78" y="38.1" rot="MR0"/>
 <instance part="TP2" gate="G$1" x="17.78" y="33.02" rot="MR0"/>
-<instance part="LOGO4" gate="G$1" x="101.854" y="14.224"/>
 </instances>
 <busses>
 </busses>
