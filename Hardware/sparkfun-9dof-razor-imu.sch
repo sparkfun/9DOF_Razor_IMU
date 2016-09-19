@@ -24214,7 +24214,7 @@ LED indicator.</text>
 <instance part="FD3" gate="G$1" x="233.68" y="17.78"/>
 <instance part="SUPPLY14" gate="G$1" x="152.4" y="175.26"/>
 <instance part="J5" gate="G$1" x="228.6" y="53.34"/>
-<instance part="SUPPLY15" gate="G$1" x="236.22" y="66.04"/>
+<instance part="SUPPLY15" gate="G$1" x="238.76" y="68.58"/>
 <instance part="GND18" gate="1" x="236.22" y="40.64"/>
 <instance part="J4" gate="G$1" x="208.28" y="50.8"/>
 <instance part="J6" gate="G$1" x="187.96" y="45.72"/>
@@ -24393,10 +24393,10 @@ LED indicator.</text>
 <wire x1="83.82" y1="139.7" x2="83.82" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="J5" gate="G$1" pin="7"/>
-<wire x1="233.68" y1="60.96" x2="236.22" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="GND18" gate="1" pin="GND"/>
-<wire x1="236.22" y1="60.96" x2="236.22" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="63.5" x2="236.22" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="J5" gate="G$1" pin="8"/>
+<wire x1="236.22" y1="63.5" x2="233.68" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J6" gate="G$1" pin="1"/>
@@ -24525,10 +24525,10 @@ LED indicator.</text>
 <wire x1="167.64" y1="48.26" x2="167.64" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="J5" gate="G$1" pin="8"/>
-<wire x1="233.68" y1="63.5" x2="236.22" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="63.5" x2="236.22" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="SUPPLY15" gate="G$1" pin="3.3V"/>
+<pinref part="J5" gate="G$1" pin="7"/>
+<wire x1="233.68" y1="60.96" x2="238.76" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="60.96" x2="238.76" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VDDCORE" class="0">
