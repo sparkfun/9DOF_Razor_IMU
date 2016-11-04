@@ -1,1 +1,0 @@
-All files are released under the Open Source Hardware Definition: http://freedomdefined.org/OSHW
