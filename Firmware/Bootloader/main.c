@@ -108,7 +108,7 @@ uint32_t* pulSketch_Start_Address;
     return;
   }
 
-/*
+
 #if defined(BOOT_LOAD_PIN)
   volatile PortGroup *boot_port = (volatile PortGroup *)(&(PORT->Group[BOOT_LOAD_PIN / 32]));
   volatile bool boot_en;
@@ -127,7 +127,7 @@ uint32_t* pulSketch_Start_Address;
     return;
   }
 #endif
-*/
+
 
 //  LED_on();
 

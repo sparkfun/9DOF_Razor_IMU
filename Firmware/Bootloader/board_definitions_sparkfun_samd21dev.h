@@ -23,11 +23,11 @@
 /*
  * USB device definitions
  */
-#define STRING_PRODUCT "SparkFun 9DoF"
+#define STRING_PRODUCT "SparkFun SAMD21"
 #define USB_VID_HIGH   0x1B
 #define USB_VID_LOW    0x4F
-#define USB_PID_HIGH   0x9D
-#define USB_PID_LOW    0x0E
+#define USB_PID_HIGH   0x8D
+#define USB_PID_LOW    0x21
 
 /*
  * If BOOT_DOUBLE_TAP_ADDRESS is defined the bootloader is started by
@@ -42,7 +42,8 @@
  * If BOOT_LOAD_PIN is defined the bootloader is started if the selected
  * pin is tied LOW.
  */
-#define BOOT_LOAD_PIN                     PIN_PA23 // PA23 is SCL on the 9DoF Razor
+//#define BOOT_LOAD_PIN                     PIN_PA21 // Pin 7
+//#define BOOT_LOAD_PIN                     PIN_PA15 // Pin 5
 
 #define BOOT_USART_MODULE                 SERCOM0
 #define BOOT_USART_BUS_CLOCK_INDEX        PM_APBCMASK_SERCOM0
@@ -52,6 +53,7 @@
 #define BOOT_USART_PAD2                   PINMUX_PA10C_SERCOM0_PAD2
 #define BOOT_USART_PAD1                   PINMUX_UNUSED
 #define BOOT_USART_PAD0                   PINMUX_UNUSED
+
 
 /* Master clock frequency */
 #define CPU_FREQUENCY                     (48000000ul)

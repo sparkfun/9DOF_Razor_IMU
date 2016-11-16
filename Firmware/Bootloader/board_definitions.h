@@ -27,6 +27,8 @@
   #include "board_definitions_genuino_mkr1000.h"
 #elif defined(BOARD_ID_sparkfun_9dof)
   #include "board_definitions_sparkfun_9dofRazor.h"
+#elif defined(BOARD_ID_sparkfun_samd21_dev)
+  #include "board_definitions_sparkfun_samd21dev.h"
 #else
   #error You must define a BOARD_ID and add the corresponding definitions in board_definitions.h
 #endif

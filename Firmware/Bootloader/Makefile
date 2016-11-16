@@ -58,7 +58,8 @@ SIZE=$(ARM_GCC_PATH)size
 # -----------------------------------------------------------------------------
 # Boards definitions
 BOARD_ID?=sparkfun_9dof
-NAME?=SparkFun_9DoF_Razor
+NAME?=SparkFun_9DoF_Razor_M0
+#SparkFun_9DoF_Razor
 
 # -----------------------------------------------------------------------------
 # Compiler options
