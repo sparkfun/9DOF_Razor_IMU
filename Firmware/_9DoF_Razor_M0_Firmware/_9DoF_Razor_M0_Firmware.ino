@@ -426,13 +426,13 @@ void parseSerialInput(char c)
     enableHeading = !enableHeading;
     flashEnableHeading.write(enableHeading);
     break;
-  case SET_LOG_RATE: // Increment the log rate from 1-200Hz (10Hz increments)
+  case SET_LOG_RATE: // Increment the log rate from 1-100Hz (10Hz increments)
     temp = imu.dmpGetFifoRate(); // Get current FIFO rate
     if (temp == 1) // If it's 1Hz, set it to 10Hz
       temp = 10;
     else
       temp += 10; // Otherwise increment by 10
-    if (temp > 200)  // If it's greater than 200Hz, reset to 1
+    if (temp > 100)  // If it's greater than 100Hz, reset to 1
       temp = 1;
     imu.dmpSetFifoRate(temp); // Send the new rate
     temp = imu.dmpGetFifoRate(); // Read the updated rate
