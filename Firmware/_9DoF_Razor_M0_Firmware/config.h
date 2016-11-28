@@ -1,3 +1,21 @@
+////////////////////////////////
+// Default Logging Parameters //
+////////////////////////////////
+#define ENABLE_TIME_LOG       true
+#define ENABLE_CALCULATED_LOG true
+#define ENABLE_ACCEL_LOG      true
+#define ENABLE_GYRO_LOG       true
+#define ENABLE_MAG_LOG        true
+#define ENABLE_QUAT_LOG       false
+#define ENABLE_EULER_LOG      false
+#define ENABLE_HEADING_LOG    false
+
+////////////////////////////////////////
+// Enable Non-Volatile Memory Storage //
+////////////////////////////////////////
+// If defined, FlashStorage library must be installed
+#define ENABLE_NVRAM_STORAGE
+
 ////////////////////////
 // Serial Port Config //
 ////////////////////////
@@ -25,18 +43,6 @@
 #define IMU_ACCEL_FSR      2 // Accel full-scale range (2, 4, 8, or 16)
 #define IMU_AG_LPF         5 // Accel/Gyro LPF corner frequency (5, 10, 20, 42, 98, or 188 Hz)
 #define ENABLE_GYRO_CALIBRATION true
-
-////////////////////////////////
-// Default Logging Parameters //
-////////////////////////////////
-#define ENABLE_TIME_LOG       true
-#define ENABLE_CALCULATED_LOG true
-#define ENABLE_ACCEL_LOG      true
-#define ENABLE_GYRO_LOG       true
-#define ENABLE_MAG_LOG        true
-#define ENABLE_QUAT_LOG       false
-#define ENABLE_EULER_LOG      false
-#define ENABLE_HEADING_LOG    false
 
 ///////////////////////
 // SD Logging Config //

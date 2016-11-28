@@ -28,13 +28,15 @@ Hardware:
 ******************************************************************************/
 // MPU-9250 Digital Motion Processing (DMP) Library
 #include <SparkFunMPU9250-DMP.h>
-// Flash storage (for nv storage on ATSAMD21)
-#include <FlashStorage.h>
 // SD Library manages file and hardware control
 #include <SD.h>
 // config.h manages default logging parameters and can be used
 // to adjust specific parameters of the IMU
 #include "config.h"
+// Flash storage (for nv storage on ATSAMD21)
+#ifdef ENABLE_NVRAM_STORAGE
+#include <FlashStorage.h>
+#endif
 
 MPU9250_DMP imu; // Create an instance of the MPU9250_DMP class
 
@@ -75,26 +77,28 @@ void blinkLED()
   ledState = !ledState;
 }
 
-///////////////////////////
-// Flash Storage Globals //
-///////////////////////////
-// Logging parameters are all stored in non-volatile memory.
-// They should maintain the previously set config value.
-FlashStorage(flashEnableSDLogging, bool);
-FlashStorage(flashFirstRun, bool);
-FlashStorage(flashEnableSD, bool);
-FlashStorage(flashEnableSerialLogging, bool);
-FlashStorage(flashenableTime, bool);
-FlashStorage(flashEnableCalculatedValues, bool);
-FlashStorage(flashEnableAccel, bool);
-FlashStorage(flashEnableGyro, bool);
-FlashStorage(flashEnableCompass, bool);
-FlashStorage(flashEnableQuat, bool);
-FlashStorage(flashEnableEuler, bool);
-FlashStorage(flashEnableHeading, bool);
-FlashStorage(flashAccelFSR, unsigned short);
-FlashStorage(flashGyroFSR, unsigned short);
-FlashStorage(flashLogRate, unsigned short);
+#ifdef ENABLE_NVRAM_STORAGE
+  ///////////////////////////
+  // Flash Storage Globals //
+  ///////////////////////////
+  // Logging parameters are all stored in non-volatile memory.
+  // They should maintain the previously set config value.
+  FlashStorage(flashEnableSDLogging, bool);
+  FlashStorage(flashFirstRun, bool);
+  FlashStorage(flashEnableSD, bool);
+  FlashStorage(flashEnableSerialLogging, bool);
+  FlashStorage(flashenableTime, bool);
+  FlashStorage(flashEnableCalculatedValues, bool);
+  FlashStorage(flashEnableAccel, bool);
+  FlashStorage(flashEnableGyro, bool);
+  FlashStorage(flashEnableCompass, bool);
+  FlashStorage(flashEnableQuat, bool);
+  FlashStorage(flashEnableEuler, bool);
+  FlashStorage(flashEnableHeading, bool);
+  FlashStorage(flashAccelFSR, unsigned short);
+  FlashStorage(flashGyroFSR, unsigned short);
+  FlashStorage(flashLogRate, unsigned short);
+#endif
 
 void setup()
 {
@@ -102,8 +106,10 @@ void setup()
   // LED defaults to off:
   initHardware(); 
   
+#ifdef ENABLE_NVRAM_STORAGE
   // Load previously-set logging parameters from nvram:
   initLoggingParams();
+#endif
 
   // Initialize the MPU-9250. Should return true on success:
   if ( !initIMU() ) 
@@ -392,39 +398,57 @@ void parseSerialInput(char c)
   {
   case PAUSE_LOGGING: // Pause logging on SPACE
     enableSerialLogging = !enableSerialLogging;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableSerialLogging.write(enableSerialLogging);
+#endif
     break;
   case ENABLE_TIME: // Enable time (milliseconds) logging
     enableTimeLog = !enableTimeLog;
+#ifdef ENABLE_NVRAM_STORAGE
     flashenableTime.write(enableTimeLog);
+#endif
     break;
   case ENABLE_ACCEL: // Enable/disable accelerometer logging
     enableAccel = !enableAccel;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableAccel.write(enableAccel);
+#endif
     break;
   case ENABLE_GYRO: // Enable/disable gyroscope logging
     enableGyro = !enableGyro;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableGyro.write(enableGyro);
+#endif
     break;
   case ENABLE_COMPASS: // Enable/disable magnetometer logging
     enableCompass = !enableCompass;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableCompass.write(enableCompass);
+#endif
     break;
   case ENABLE_CALC: // Enable/disable calculated value logging
     enableCalculatedValues = !enableCalculatedValues;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableCalculatedValues.write(enableCalculatedValues);
+#endif
     break;
   case ENABLE_QUAT: // Enable/disable quaternion logging
     enableQuat = !enableQuat;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableQuat.write(enableQuat);
+#endif
     break;
   case ENABLE_EULER: // Enable/disable Euler angle (roll, pitch, yaw)
     enableEuler = !enableEuler;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableEuler.write(enableEuler);
+#endif
     break;
   case ENABLE_HEADING: // Enable/disable heading output
     enableHeading = !enableHeading;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableHeading.write(enableHeading);
+#endif
     break;
   case SET_LOG_RATE: // Increment the log rate from 1-100Hz (10Hz increments)
     temp = imu.dmpGetFifoRate(); // Get current FIFO rate
@@ -436,7 +460,9 @@ void parseSerialInput(char c)
       temp = 1;
     imu.dmpSetFifoRate(temp); // Send the new rate
     temp = imu.dmpGetFifoRate(); // Read the updated rate
+#ifdef ENABLE_NVRAM_STORAGE
     flashLogRate.write(temp); // Store it in NVM and print new rate
+#endif
     LOG_PORT.println("IMU rate set to " + String(temp) + " Hz");
     break;
   case SET_ACCEL_FSR: // Increment accelerometer full-scale range
@@ -447,7 +473,9 @@ void parseSerialInput(char c)
     else temp = 2;                 // Otherwise, default to 2
     imu.setAccelFSR(temp); // Set the new FSR
     temp = imu.getAccelFSR(); // Read it to make sure
+#ifdef ENABLE_NVRAM_STORAGE
     flashAccelFSR.write(temp); // Update the NVM value, and print
+#endif
     LOG_PORT.println("Accel FSR set to +/-" + String(temp) + " g");
     break;
   case SET_GYRO_FSR:// Increment gyroscope full-scale range
@@ -458,59 +486,64 @@ void parseSerialInput(char c)
     else temp = 250;                   // Otherwise, default to 250
     imu.setGyroFSR(temp); // Set the new FSR
     temp = imu.getGyroFSR(); // Read it to make sure
+#ifdef ENABLE_NVRAM_STORAGE
     flashGyroFSR.write(temp); // Update the NVM value, and print
+#endif
     LOG_PORT.println("Gyro FSR set to +/-" + String(temp) + " dps");
     break;
   case ENABLE_SD_LOGGING: // Enable/disable SD card logging
     enableSDLogging = !enableSDLogging;
+#ifdef ENABLE_NVRAM_STORAGE
     flashEnableSDLogging.write(enableSDLogging);
+#endif
     break;
   default: // If an invalid character, do nothing
     break;
   }
 }
 
-// Read from non-volatile memory to get logging parameters
-void initLoggingParams(void)
-{
-  // Read from firstRun mem location, should default to 0 on program
-  if (flashFirstRun.read() == 0) 
+#ifdef ENABLE_NVRAM_STORAGE
+  // Read from non-volatile memory to get logging parameters
+  void initLoggingParams(void)
   {
-    // If we've got a freshly programmed board, program all of the
-    // nvm locations:
-    flashEnableSDLogging.write(enableSDLogging);
-    flashEnableSerialLogging.write(enableSerialLogging);
-    flashenableTime.write(enableTimeLog);
-    flashEnableCalculatedValues.write(enableCalculatedValues);
-    flashEnableAccel.write(enableAccel);
-    flashEnableGyro.write(enableGyro);
-    flashEnableCompass.write(enableCompass);
-    flashEnableQuat.write(enableQuat);
-    flashEnableEuler.write(enableEuler);
-    flashEnableHeading.write(enableHeading);
-    flashAccelFSR.write(accelFSR);
-    flashGyroFSR.write(gyroFSR);
-    flashLogRate.write(fifoRate);
-    
-    flashFirstRun.write(1); // Set the first-run boolean
+    // Read from firstRun mem location, should default to 0 on program
+    if (flashFirstRun.read() == 0) 
+    {
+      // If we've got a freshly programmed board, program all of the
+      // nvm locations:
+      flashEnableSDLogging.write(enableSDLogging);
+      flashEnableSerialLogging.write(enableSerialLogging);
+      flashenableTime.write(enableTimeLog);
+      flashEnableCalculatedValues.write(enableCalculatedValues);
+      flashEnableAccel.write(enableAccel);
+      flashEnableGyro.write(enableGyro);
+      flashEnableCompass.write(enableCompass);
+      flashEnableQuat.write(enableQuat);
+      flashEnableEuler.write(enableEuler);
+      flashEnableHeading.write(enableHeading);
+      flashAccelFSR.write(accelFSR);
+      flashGyroFSR.write(gyroFSR);
+      flashLogRate.write(fifoRate);
+      
+      flashFirstRun.write(1); // Set the first-run boolean
+    }
+    else // If values have been previously set:
+    {
+      // Read from NVM and set the logging parameters:
+      enableSDLogging = flashEnableSDLogging.read();
+      enableSerialLogging = flashEnableSerialLogging.read();
+      enableTimeLog = flashenableTime.read();
+      enableCalculatedValues = flashEnableCalculatedValues.read();
+      enableAccel = flashEnableAccel.read();
+      enableGyro = flashEnableGyro.read();
+      enableCompass = flashEnableCompass.read();
+      enableQuat = flashEnableQuat.read();
+      enableEuler = flashEnableEuler.read();
+      enableHeading = flashEnableHeading.read();
+      accelFSR = flashAccelFSR.read();
+      gyroFSR = flashGyroFSR.read();
+      fifoRate = flashLogRate.read();
+    }
   }
-  else // If values have been previously set:
-  {
-    // Read from NVM and set the logging parameters:
-    enableSDLogging = flashEnableSDLogging.read();
-    enableSerialLogging = flashEnableSerialLogging.read();
-    enableTimeLog = flashenableTime.read();
-    enableCalculatedValues = flashEnableCalculatedValues.read();
-    enableAccel = flashEnableAccel.read();
-    enableGyro = flashEnableGyro.read();
-    enableCompass = flashEnableCompass.read();
-    enableQuat = flashEnableQuat.read();
-    enableEuler = flashEnableEuler.read();
-    enableHeading = flashEnableHeading.read();
-    accelFSR = flashAccelFSR.read();
-    gyroFSR = flashGyroFSR.read();
-    fifoRate = flashLogRate.read();
-  }
-  
-}
+#endif
 
