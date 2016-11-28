@@ -15,7 +15,7 @@ can be modified using the included "config.h" file.
 
 Resources:
 SparkFun MPU9250-DMP Arduino Library:
-  https://github.com/sparkfun/SparkFun-MPU-9250-DMP-Arduino-Library
+  https://github.com/sparkfun/SparkFun_MPU-9250-DMP_Arduino_Library
 FlashStorage Arduino Library
   https://github.com/cmaglie/FlashStorage
 
@@ -336,6 +336,8 @@ bool initSD(void)
   {
     return false;
   }
+
+  return true;
 }
 
 // Log a string to the SD card
