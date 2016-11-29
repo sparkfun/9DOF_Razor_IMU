@@ -105,7 +105,6 @@ void setup()
   // Initialize LED, interrupt input, and serial port.
   // LED defaults to off:
   initHardware(); 
-  
 #ifdef ENABLE_NVRAM_STORAGE
   // Load previously-set logging parameters from nvram:
   initLoggingParams();
@@ -126,6 +125,10 @@ void setup()
     // Get the next, available log file name
     logFileName = nextLogFile(); 
   }
+
+  // For production testing only
+  // To catch a "$" and enter testing mode
+  Serial1.begin(9600);
 }
 
 void loop()
@@ -152,6 +155,14 @@ void loop()
   // If logging (to either UART and SD card) is enabled
   if ( enableSerialLogging || enableSDLogging)
     logIMUData(); // Log new data
+
+  // Check for production mode testing message, "$"
+  // This will be sent to board from testbed, and should be heard on hadware serial port Serial1
+  if ( Serial1.available() )
+  {
+    if ( Serial1.read() == '$' ) production_testing();
+  }
+  
 }
 
 void logIMUData(void)
@@ -548,4 +559,135 @@ void parseSerialInput(char c)
     }
   }
 #endif
+  
+// All the code and functions below are used for production, and can be removed if desired while still maintaining all product functionality.
+
+// PRODUCTION TESTING VARIABLES
+int net_1_pins[] = {11,A0,A2,A4,9};
+int net_2_pins[] = {12,10,A1,A3,8};
+char input;
+int failures = 0;
+
+// PRODUCTION TESTING FUNCTION
+void production_testing(void)
+{
+  digitalWrite(HW_LED_PIN, HIGH); // Turn on Blue STAT LED for visual inspection                       
+
+  while(1) // stay here, until a hard reset happens
+  {
+    // check for new serial input:
+    if ( Serial1.available() )
+    {
+      // If new input is available on serial1 port
+      // These are connected to the RX/TX on Serial2 on the testbed mega2560.
+      input = Serial1.read(); // grab it
+      switch (input) 
+      {
+        case '$':
+          failures = 0; // reset
+          Serial1.print("h"); // "h" for "hello"
+          break;
+        case '1':
+          if(net_1_test() == true) Serial1.print("a");
+          else Serial1.print("F");
+          break;
+        case '2':
+          if(net_2_test() == true) 
+          {
+            Serial1.print("b");
+            if(uSD_ping() == true) Serial1.print("c");
+            else Serial1.print("F");
+          }
+          else Serial1.print("F");
+          break;        
+      }
+    }
+  }
+}
+
+
+// PRODUCTION TESTING FUNCTION
+// Test that the SD card is there and remove log file
+// I use the result of the SD.remove() function to know if it deleted the file properly
+// Note, this requires that the 9dof wake up and start logging to a new file (even just for a microsecond)
+bool uSD_ping(void)
+{
+//  Serial1.print("nextLogFile: ");
+//  Serial1.print( nextLogFile() );
+
+//  Serial1.print("logFileName: ");
+//  Serial1.print( String(logFileName) );
+
+  bool remove_log_file_result = SD.remove(logFileName);
+//  Serial1.print("r: ");
+//  Serial1.print( remove_log_file_result , BIN);
+
+  if(remove_log_file_result == true) return true;
+  else
+  { 
+    return false;
+  }
+}
+
+// PRODUCTION TESTING FUNCTION
+bool net_1_test()
+{
+  set_nets_all_inputs();
+  // check all net 1 is low
+  for(int i = 0 ; i <= 4 ; i++)
+  {
+    bool result;
+    result = digitalRead(net_1_pins[i]);
+//    Serial1.print(result);
+    if(result == true) failures++;
+  }   
+  Serial1.println(" ");
+  // check all net 2 is high
+  for(int i = 0 ; i <= 4 ; i++)
+  {
+    bool result;
+    result = digitalRead(net_2_pins[i]);
+//    Serial1.print(result);
+    if(result == false) failures++;
+  }   
+  Serial1.println(" ");
+  if(failures == 0) return true;
+  else return false;
+}
+
+// PRODUCTION TESTING FUNCTION
+bool net_2_test()
+{
+  set_nets_all_inputs();
+  // check all net 1 is high
+  for(int i = 0 ; i <= 4 ; i++)
+  {
+    bool result;
+    result = digitalRead(net_1_pins[i]);
+//    Serial1.print(result);
+    if(result == false) failures++;
+  }   
+  //Serial1.println(" ");
+  // check all net 2 is low
+  for(int i = 0 ; i <= 4 ; i++)
+  {
+    bool result;
+    result = digitalRead(net_2_pins[i]);
+//    Serial1.print(result);
+    if(result == true) failures++;
+  }   
+  //Serial1.println(" ");
+  if(failures == 0) return true;
+  else return false;
+}
+
+// PRODUCTION TESTING FUNCTION
+void set_nets_all_inputs()
+{
+  for(int i = 0 ; i <= 4 ; i++)
+  {
+    pinMode(net_1_pins[i], INPUT);
+    pinMode(net_2_pins[i], INPUT);
+  }   
+}
 
