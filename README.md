@@ -1,30 +1,49 @@
-9 Degrees of Freedom-Razor IMU
-======================================
+SparkFun 9DoF Razor IMU M0
+========================================
 
-[![9DOF Razor IMU](https://dlnmh9ip6v2uc.cloudfront.net/images/products/1/0/7/3/6/10736-01_i_ma.jpg)  
-*9 Degrees of Freedom-Razor IMU (SEN-10736)*](https://www.sparkfun.com/products/10736)
+[![SparkFun 9DoF Razor IMU M0](https://cdn.sparkfun.com/r/500-500/assets/parts/1/1/7/7/5/14001-04.jpg)](https://www.sparkfun.com/products/14001)
 
-The 9DOF Razor IMU incorporates three sensors - an ITG-3200 (MEMS triple-axis gyro), ADXL345 (triple-axis accelerometer), and HMC5883L (triple-axis magnetometer) - 
-to give you nine degrees of inertial measurement. 
-The outputs of all sensors are processed by an on-board ATmega328 and output over a serial interface. This enables the 9DOF Razor to be used as a very powerful control mechanism for UAVs, 
-autonomous vehicles and image stabilization systems.
+[*SparkFun 9DoF Razor IMU M0 (SEN-14001)*](https://www.sparkfun.com/products/14001)
 
-More information can be found on the Wiki for this repo and on the Sparkfun.com product page. 
+The [SparkFun 9DoF Razor IMU M0](https://www.sparkfun.com/products/14001) combines a [SAMD21](https://www.sparkfun.com/products/13664) microprocessor with an [MPU-9250](https://www.sparkfun.com/products/13762) 9DoF (nine degrees of freedom) sensor to create a tiny, re-programmable, multi-purpose inertial measurement unit (IMU). It can be programmed to monitor and log motion, transmit Euler angles over a serial port, or to even act as a step-counting pedometer.
 
-This part was created in Eagle v6.5.
+The 9DoF Razor's MPU-9250 features three, three-axis sensors -- an accelerometer, gyroscope, and magnetometer -- which gives it the ability to sense linear acceleration, angular rotation velocity, and magnetic field vector's. The on-board microprocessor -- Atmel's [SAMD21G18A](http://www.atmel.com/devices/ATSAMD21G18.aspx) -- is an Arduino-compatible, 32-bit ARM Cortex-M0+ microcontroller also featured on the [Arduino Zero](https://www.arduino.cc/en/Main/ArduinoBoardZero) and [SAMD21 Mini Breakout](https://www.sparkfun.com/products/13664) boards.
 
 Repository Contents
 -------------------
-* **/Firmware** - Any firmware that the part ships with, 
-* **/Hardware** - All Eagle design files (.brd, .sch, .STL)
-* **/Production Files** - Test bed files and production panel files
+
+* **/Documentation** - Data sheets, additional product information
+* **/Firmware** - Example code 
+* **/Hardware** - Eagle design files (.brd, .sch)
+* **/Libraries** - Libraries for use with the 9DoF Razor IMU M0
+* **/Production Files** - Production panel files (.brd)
+
+Documentation
+--------------
+* **[SparkFun MPU-9250 DMP Arduino Library](https://github.com/sparkfun/SparkFun_MPU-9250-DMP_Arduino_Library)** - Arduino library for the 9DoF Razor IMU M0's MPU-9250, enabling the 9DoF's digital motion processor (DMP).
+* **[Hookup Guide](https://learn.sparkfun.com/tutorials/9dof-razor-imu-m0-hookup-guide)** - Basic hookup guide for the 9DoF Razor IMU M0.
+* **[SparkFun Fritzing repo](https://github.com/sparkfun/Fritzing_Parts)** - Fritzing diagrams for SparkFun products.
+* **[SparkFun 3D Model repo](https://github.com/sparkfun/3D_Models)** - 3D models of SparkFun products. 
+
+Product Versions
+----------------
+* [SparkFun 9DoF Razor IMU M0 (SEN-14001)](https://www.sparkfun.com/products/14001)- Latest release.
+* [SparkFun 9DoF Razor IMU (SEN-10736)](https://www.sparkfun.com/products/retired/10736) - Initial release, featuring an ATmega328, ADXL345 (accelerometer), ITG-3200 (gyroscope), and HMC5883L (magnetometer).
+
+Version History
+---------------
+* [V_3.0](https://github.com/sparkfun/9DOF_Razor_IMU/releases/tag/V_3.0) - Hardware and firmware files for version 3.0 -- released as SEN-14001.
+* [V_2.3](https://github.com/sparkfun/9DOF_Razor_IMU/releases/tag/V_2.3) - Hardware and firmware design files for version 2.3 -- released as SEN-10736.
 
 License Information
 -------------------
-The hardware is released under [Creative Commons Share-alike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).  
 
-All other code is open source so please feel free to do anything you want with it; you buy me a beer if you use this 
-and we meet someday ([Beerware license](http://en.wikipedia.org/wiki/Beerware)).
+This product is _**open source**_! 
 
+Please review the LICENSE.md file for license information. 
 
+If you have any questions or concerns on licensing, please contact techsupport@sparkfun.com.
 
+Distributed as-is; no warranty is given.
+
+- Your friends at SparkFun.
