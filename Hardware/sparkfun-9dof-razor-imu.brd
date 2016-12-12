@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -2677,7 +2677,7 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <element name="H2" library="SparkFun-Electromechanical" package="STAND-OFF" value="STAND-OFF" x="2.54" y="2.54"/>
 <element name="H4" library="SparkFun-Electromechanical" package="STAND-OFF" value="STAND-OFF" x="2.54" y="29.21"/>
 <element name="H3" library="SparkFun-Electromechanical" package="STAND-OFF" value="STAND-OFF" x="29.21" y="29.21"/>
-<element name="S1" library="SparkFun-Electromechanical" package="SWITCH-SPST-SMD-A" value="" x="2.921" y="10.922" rot="MR270">
+<element name="S1" library="SparkFun-Electromechanical" package="SWITCH-SPST-SMD-A" value="SWITCH-SPST-SMD-A" x="2.921" y="10.922" rot="MR270">
 <attribute name="PROD_ID" value="SWCH-10651" x="2.921" y="10.922" size="1.778" layer="28" font="vector" ratio="15" rot="MR270" display="off"/>
 </element>
 <element name="R6" library="SparkFun-Resistors" package="0603" value="100k" x="20.32" y="28.575">
