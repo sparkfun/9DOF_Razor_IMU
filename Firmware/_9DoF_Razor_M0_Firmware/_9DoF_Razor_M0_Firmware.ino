@@ -323,6 +323,7 @@ bool initIMU(void)
   {
     // Gyro calibration re-calibrates the gyro after a set amount
     // of no motion detected
+    dmpFeatureMask |= DMP_FEATURE_GYRO_CAL;
     dmpFeatureMask |= DMP_FEATURE_SEND_CAL_GYRO;
   }
   else
