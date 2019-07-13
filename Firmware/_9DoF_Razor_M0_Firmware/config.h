@@ -64,7 +64,7 @@
 #define ENABLE_COMPASS    'm' // Enable/disable magnetometer log (mx, my, mz)
 #define ENABLE_CALC       'c' // Enable/disable calculated values
 #define ENABLE_QUAT       'q' // Enable/disable quaternion logging (qw, qx, qy, qz)
-#define ENABLE_EULER      'e' // Enable/disable estimated euler angles (roll, pitch, yaw)
+#define ENABLE_EULER      'e' // Enable/disable estimated euler angles (pitch, roll, yaw)
 #define ENABLE_HEADING    'h' // Enable/disable estimated heading logging
 #define SET_LOG_RATE      'r' // Adjust logging rate from 1-200 Hz (in 10 Hz increments)
 #define SET_ACCEL_FSR     'A' // Set accelerometer FSR (2, 4, 8, 16g)
