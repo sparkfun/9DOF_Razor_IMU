@@ -629,16 +629,17 @@ void MPU9250_DMP::computeEulerAngles(bool degrees)
     
     float ysqr = dqy * dqy;
     float t0 = -2.0f * (ysqr + dqz * dqz) + 1.0f;
-    float t1 = +2.0f * (dqx * dqy - dqw * dqz);
-    float t2 = -2.0f * (dqx * dqz + dqw * dqy);
-    float t3 = +2.0f * (dqy * dqz - dqw * dqx);
+    float t1 = +2.0f * (dqw * dqz + dqx * dqy);
+    float t2 = +2.0f * (dqw * dqy - dqz * dqx);
+    float t3 = +2.0f * (dqw * dqx + dqy * dqz);
     float t4 = -2.0f * (dqx * dqx + ysqr) + 1.0f;
-  
-	// Keep t2 within range of asin (-1, 1)
-    t2 = t2 > 1.0f ? 1.0f : t2;
-    t2 = t2 < -1.0f ? -1.0f : t2;
-  
-    pitch = asin(t2) * 2;
+	
+	// Limit t1 to be in range of asin
+	if (abs(t1) >= 1)
+        pitch = copysign(M_PI / 2, t1); // use 90 degrees if out of range
+    else
+        pitch = asin(t1);
+
     roll = atan2(t3, t4);
     yaw = atan2(t1, t0);
 	
